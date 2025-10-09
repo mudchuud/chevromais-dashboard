@@ -1,0 +1,11 @@
+---
+// src/pages/cPanel.astro
+import PageTitle from "../components/Base/PageTitle.astro";
+import BaseLayout from "../Layouts/BaseLayout.astro";
+import UserConfigPanel from "../components/cPanel/UserConfigPanel";
+---
+
+<BaseLayout>
+  <PageTitle title="Configurações" />
+  <UserConfigPanel client:load />
+</BaseLayout>

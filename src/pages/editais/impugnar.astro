@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../../Layouts/BaseLayout.astro";
+import PageTitle from "../../components/Base/PageTitle.astro";
+import RadioGroup from "../../components/Editais/RadioInput";
+import Input from "../../components/Editais/Input";
+
+const companyOptions = [
+  { label: "Autoluk", value: "Autoluk" },
+  { label: "Chevromais", value: "chevromais" },
+  { label: "Lukauto", value: "lukauto" },
+  { label: "Curitiba Pneus", value: "curitibapneus" },
+];
+const selectedValue = "react";
+
+const buyerOptions = [
+  { label: "Prefeitura Municipal de", value: "Autoluk" },
+  { label: "Órgão com localidade", value: "chevromais" },
+  { label: "Órgão sem localidade", value: "chevromais" },
+];
+---
+
+<BaseLayout>
+  <PageTitle title="Impugnar" />
+  <div class="p-6">
+    <h2 class="mb-6 py-2 border-b-1 border-black/30 font-bold uppercase">
+      Selecione a empresa
+    </h2>
+    <RadioGroup name="company" options={companyOptions} value={selectedValue} />
+  </div>
+  <div class="grid grid-cols-10 p-6 space-x-4">
+    <h2
+      class="mb-6 py-2 border-b-1 border-black/30 font-bold uppercase col-span-10"
+    >
+      Informações do pregão
+    </h2>
+    <Input label="Número" id="name" required addClass="col-span-2" />
+    <Input label="Data" id="name" required addClass="col-span-2" />
+    <Input label="Órgão" id="name" required addClass="col-span-6" />
+    <div class="col-span-10 grid grid-cols-10 my-6">
+      <div class="col-span-4 md:col-span-10">
+        <RadioGroup name="buyeroptions" options={buyerOptions} value={selectedValue} />
+      </div>
+      <div class="col-span-6 md:col-span-10 md:mt-4">
+        <Input label="Órgão" id="name" required />
+      </div>
+    </div>
+  </div>
+</BaseLayout>

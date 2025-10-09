@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../../Layouts/BaseLayout.astro";
+import PageTitle from "../../components/Base/PageTitle.astro";
+import RadioInput from "../../components/Editais/RadioInput";
+import Input from "../../components/Editais/Input";
+---
+
+<BaseLayout>
+  <PageTitle title="Troca de Marcas" />
+  <div id="controls" class="p-4 grid grid-cols-4">
+    <div id="company" class="space-y-2">
+      <h2 class="text-sm font-bold uppercase text-slate-800">› Empresa</h2>
+      <RadioInput
+        label="Autoluk"
+        name="company-select"
+        value="autoluk"
+        checked
+      />
+      <RadioInput label="Chevromais" name="company-select" value="Chevromais" />
+
+      <RadioInput label="Lukauto" name="company-select" value="lukauto" />
+      <RadioInput
+        label="Curitiba Pneus"
+        name="company-select"
+        value="curitibapneus"
+      />
+    </div>
+    <div id="documentation">
+      <h2 class="text-sm font-bold uppercase text-slate-800">› Documentação</h2>
+      <Input name="doc-type" type="text" label="Tipo de documento" required />
+      <Input
+        name="doc-number"
+        type="text"
+        label="Número do documento"
+        required
+      />
+    </div>
+  </div>
+</BaseLayout>

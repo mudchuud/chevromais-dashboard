@@ -1,0 +1,42 @@
+---
+//cPanel.astro
+import PageTitle from "../../components/Base/PageTitle.astro";
+import BaseLayout from "../../Layouts/BaseLayout.astro";
+import DatabaseSnapshot from "../../components/cPanel/DatabaseSnapshot";
+import AddBrand from "../../components/cPanel/AddBrand";
+import AddModel from "../../components/cPanel/AddModel";
+import Modal from "../../components/cPanel/Modal";
+import ImportXlsx from "../../components/cPanel/ImportSheet.jsx";
+---
+
+<BaseLayout>
+
+  <PageTitle title="Marcas e Modelos" />
+  <div id="products-list" class="p-4 grid grid-cols-3 gap-3">
+
+    <h3 class="uppercase font-bold col-span-3 border-b border-black/20">
+      Listagem de produtos
+    </h3>
+
+    <div class="col-span-1">
+      <Modal title="Adicionar marca" id="add-brand" client:load>
+        <AddBrand client:load />
+      </Modal>
+    </div>
+    <div class="col-span-1">
+      <Modal title="Adicionar modelo" id="add-model" client:load >
+        <AddModel client:load />
+      </Modal>
+    </div>
+    <div class="col-span-1">
+      <Modal title="Importar .xlsx" id="import-xlsx" client:load >
+        <ImportXlsx client:load />
+      </Modal>
+    </div>
+
+    <div class="w-full col-span-3">
+      <DatabaseSnapshot client:load />
+    </div>
+  </div>
+
+</BaseLayout>

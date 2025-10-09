@@ -1,0 +1,7 @@
+{
+    "IDX.aI.enableInlineCompletion": true,
+    "IDX.aI.enableCodebaseIndexing": true,
+    "prettier.useTabs": true,
+    "prettier.printWidth": 999,
+    "prettier.htmlWhitespaceSensitivity": "ignore"
+}

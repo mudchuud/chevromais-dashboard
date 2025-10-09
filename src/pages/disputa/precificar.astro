@@ -1,0 +1,11 @@
+---
+import BaseLayout from "../../Layouts/BaseLayout.astro";
+import PageTitle from "../../components/Base/PageTitle.astro";
+import Precificador from "../../components/Disputa/Precificador.jsx";
+
+---
+
+<BaseLayout>
+  <PageTitle title="Precificar" />
+  <Precificador client:load />
+</BaseLayout>

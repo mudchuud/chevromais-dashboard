@@ -1,0 +1,134 @@
+---
+import { Divider } from "@mui/material";
+import HomeIcon from "@mui/icons-material/Home";
+
+import SettingsIcon from "@mui/icons-material/Settings";
+import InfoIcon from "@mui/icons-material/Info";
+import LogoutIcon from "@mui/icons-material/Logout";
+
+import DescriptionRoundedIcon from "@mui/icons-material/DescriptionRounded";
+import GavelRoundedIcon from "@mui/icons-material/GavelRounded";
+import ChangeCircleOutlinedIcon from "@mui/icons-material/ChangeCircleOutlined";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+
+const dividerStyle = {
+	opacity: 0.15,
+	backgroundColor: "white",
+};
+const buttomLink = "flex items-center justify-start text-sm p-4 text-white/60 hover:text-white/100 transition-colors duration-200 hover:bg-black/20 group";
+const buttomLinkDisabled = "flex items-center justify-start text-sm p-4 text-white/20  transition-colors duration-200 group";
+const iconStyle = {
+	fontSize: 24,
+};
+---
+
+<div class="fixed h-screen bg-slate-700 bg-gradient-to-b to-slate-800 dark:from-slate-600 text-white flex flex-col shadow-lg z-1">
+	<!-- Cabeçalho -->
+
+	<div class="p-2 bg-slate-800">
+		<div class="flex items-center space-x-2">
+			<span class="flex justify-center items-center text-base rounded-full bg-black/40 w-10 h-10 flex-shrink-0 shadow-sm">VM</span>
+		</div>
+	</div>
+
+	<div class="flex items-center flex-col">
+		{/* Link Home */}
+		<a href="/" class={`${buttomLink} my-2`} title="Início" ">
+			<HomeIcon sx={iconStyle} />
+		</a>
+
+		{/* Menu Disputa */}
+		<div class="group relative border-t border-white/20">
+			{/* Ícone Disputa */}
+			<div class={`${buttomLink} my-2 group-hover:bg-black/20 group-hover:text-white cursor-pointer`}>
+				<GavelRoundedIcon sx={iconStyle} />
+			</div>
+			{/* Dropdown Editais */}
+			<div class="absolute bg-gradient-to-r to-slate-800 dark:from-slate-900 border border-black/10 p-2 text-black left-[-200px] group-hover:left-[56px] top-0 opacity-0 rounded-r-lg shadow-lg group-hover:opacity-100 inset-shadow-sm text-slate-300">
+				<h2 class="border-b border-white/20 p-2 mb-2 w-50 font-bold uppercase">Disputas</h2>
+				<ul class="space-y-2">
+					<li>
+						<a href="/disputa/precificar" class="p-2 block hover:bg-white/10 hover:ring-1 hover:ring-white/20 rounded-lg transition-all duration-300 hover:pl-4">Precificar</a>
+					</li>
+
+					<li>
+						<a href="/disputa/marcas-modelos" class="p-2 block hover:bg-white/10 hover:ring-1 hover:ring-white/20 rounded-lg transition-all duration-300 hover:pl-4">Marcas e Modelos</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		{/* Menu Editais */}
+		<div class="group relative border-b border-white/20">
+			{/* Ícone Editais */}
+			<div class={`${buttomLinkDisabled} mb-2`}>
+				<DescriptionRoundedIcon sx={iconStyle} />
+			</div>
+
+			{/* Dropdown Editais */}
+			<!-- <div
+        class="absolute bg-gradient-to-r to-slate-800 dark:from-slate-900 border border-black/10 p-2 text-black left-[-200px] group-hover:left-[56px] top-0 opacity-0 rounded-r-lg shadow-lg group-hover:opacity-100 inset-shadow-sm text-slate-300"
+      >
+        <h2 class="border-b border-black/50 p-2 mb-2 w-50 font-bold uppercase">
+          Editais
+        </h2>
+
+        <ul class="space-y-2">
+          <li>
+            <a
+              href="/editais/"
+              class="p-2 block hover:bg-white/10 hover:ring-1 hover:ring-white/20 rounded-lg transition-all duration-300 hover:pl-4"
+            >
+              Listagem
+            </a>
+          </li>
+          <li>
+            <a
+              href="/editais/impugnar"
+              class="p-2 block hover:bg-white/10 hover:ring-1 hover:ring-white/20 rounded-lg transition-all duration-300 hover:pl-4"
+            >
+              Impugnar
+            </a>
+          </li>
+        </ul>
+      </div> -->
+		</div>
+		<div class="group relative border-b border-white/20">
+			{/* Ícone Editais */}
+			<div>
+				<a class={`${buttomLinkDisabled} my-2`}>
+					<ChangeCircleOutlinedIcon sx={iconStyle} />
+				</a>
+			</div>
+		</div>
+		<div class="group relative">
+			{/* Ícone e-Commerce */}
+			<div>
+				<a href="/store" class={`${buttomLink} my-2`}>
+					<ShoppingCartIcon sx={iconStyle} />
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<!-- Outros links ou informações -->
+	<div class="mt-auto">
+		<Divider sx={dividerStyle} />
+		<a class={`${buttomLinkDisabled} mt-2`}>
+			<SettingsIcon sx={iconStyle} />
+		</a>
+		<a class={`${buttomLinkDisabled} mt-2`}>
+			<InfoIcon sx={iconStyle} />
+		</a>
+		<a
+			onClick={(e) => {
+				e.preventDefault();
+				handleLogout();
+			}}
+			class={`${buttomLinkDisabled} mt-2`}
+		>
+			<LogoutIcon sx={iconStyle} />
+		</a>
+		<p class="text-xs text-center text-white/40 my-2">v0.1a</p>
+	</div>
+</div>

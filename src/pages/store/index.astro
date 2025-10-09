@@ -1,0 +1,10 @@
+---
+import BaseLayout from "../../Layouts/BaseLayout.astro";
+import PageTitle from "../../components/Base/PageTitle.astro";
+import DescriptionGenerator from "../../components/Store/DescriptionGenerator.jsx";
+---
+
+<BaseLayout>
+  <PageTitle title="Loja Virtual" />
+  <DescriptionGenerator client:load />
+</BaseLayout>

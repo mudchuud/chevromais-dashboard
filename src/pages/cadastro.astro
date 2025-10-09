@@ -1,0 +1,134 @@
+---
+//cadastro.astro
+import BaseLayout from "../Layouts/AuthLayout.astro";
+---
+
+<BaseLayout>
+  <h1
+    class="text-3xl text-thin border-b-1 border-black/20 text-black/80 pb-2 mb-2 text-center uppercase"
+  >
+    Cadastro
+  </h1>
+  <form id="register-form" class="w-full max-w-md mx-auto">
+    <div class="w-full space-y-4 py-2">
+      <div class="grid grid-cols-2 gap-2">
+        <div class="col-span-2 sm:col-span-1">
+          <p class="ms-2 uppercase text-sm text-black/70">Nome</p>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            class="w-full border border-black/20 p-2 rounded-lg"
+            required
+          />
+        </div>
+        <div class="col-span-2 sm:col-span-1">
+          <p class="ms-2 uppercase text-sm text-black/70">Sobrenome</p>
+          <input
+            type="text"
+            name="lastname"
+            id="lastname"
+            class="w-full border border-black/20 p-2 rounded-lg"
+            required
+          />
+        </div>
+      </div>
+
+      <div>
+        <p class="ms-2 uppercase text-sm text-black/70">Email</p>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          class="w-full border border-black/20 p-2 rounded-lg"
+          required
+        />
+      </div>
+
+      <div>
+        <p class="ms-2 uppercase text-sm text-black/70">Senha</p>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          class="w-full border border-black/20 p-2 rounded-lg"
+          required
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="bg-black/50 hover:bg-black/70 transition-bg duration-150 text-white w-full py-2 rounded-lg cursor-pointer"
+      >
+        Enviar
+      </button>
+
+      <div class="flex justify-center">
+        <a
+          href="/"
+          class="text-sm text-black/50 hover:text-black/70 hover:underline"
+          >Voltar</a
+        >
+      </div>
+    </div>
+  </form>
+</BaseLayout>
+
+<script type="module">
+  import { app } from "../scripts/firebase-config.js"
+  import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js';
+  import { getDatabase, ref, set } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js';
+  // Inicialize o Firebase passando o app corretamente.
+  const auth = getAuth(app);
+  const database = getDatabase(app);
+
+  // Escuta o evento submit do formulário
+  document
+    .getElementById("register-form")
+    .addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // Captura os valores dos campos
+      const name = document.getElementById("name").value.trim();
+      const lastname = document.getElementById("lastname").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      // Validação simples (pode melhorar para verificar se os campos estão vazios, etc.)
+      if (!name || !lastname || !email || !password) {
+        alert("Por favor, preencha todos os campos.");
+        return;
+      }
+
+      try {
+        // Criar usuário na Firebase Auth
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        const uid = userCredential.user.uid;
+
+        // Dados adicionais do usuário
+        const userData = {
+          name,
+          lastname,
+          email,
+          access: "user",
+          client_id: "", // ajuste conforme sua lógica de negócio
+          client_key: "", // ajuste conforme sua lógica
+          status: false,
+        };
+
+        // Salvando no Realtime Database
+        await set(ref(database, `users/${uid}`), userData);
+
+        alert("Usuário cadastrado com sucesso!");
+        // Opcional: redirecionar ou limpar o formulário
+        document.getElementById("register-form").reset();
+      } catch (error) {
+        console.error("Erro ao cadastrar usuário:", error);
+        alert(`Erro: ${error.message}`);
+      }
+    });
+</script>

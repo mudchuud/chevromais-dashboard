@@ -1,0 +1,38 @@
+---
+// BaseLayout.astro
+import "../styles/global.css";
+import Footer from "../components/Base/Footer.astro";
+import Navigation from "../components/Base/Navigation.astro";
+---
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1.0, user-scalable=no" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Chevromais Dashboard</title>
+  </head>
+  <body class="bg-black/30">
+      <div class="flex">
+        <div class="flex-none">
+          <Navigation />
+        </div>
+
+        <main class="grow h-full ml-[56px]">
+          <section class="bg-slate-100 bg-gradient-to-t to-slate-200 shadow-lg">
+            <slot />
+          </section>
+          <Footer />
+        </main>
+      </div>
+  </body>
+
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&display=swap");
+    html, body {
+      margin: 0;
+      font-family: "Oxanium", sans-serif;
+    }
+  </style>
+</html>

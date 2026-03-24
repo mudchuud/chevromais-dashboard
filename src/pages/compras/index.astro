@@ -1,0 +1,12 @@
+---
+import BaseLayout from "../../Layouts/BaseLayout.astro";
+import PageTitle from "../../components/Base/PageTitle.astro";
+import ListProducts from "../../components/Compras/ListProducts"
+import AddProducts from "../../components/Compras/AddProducts"
+import AddBusiness from "../../components/Compras/AddBusiness"
+---
+<BaseLayout>
+    <PageTitle title="Compras" />
+    <ListProducts client:load/>
+  
+  </BaseLayout>

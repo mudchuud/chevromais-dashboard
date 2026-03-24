@@ -118,9 +118,12 @@ export default function XlsxEditor() {
 
 			{rows.length > 0 && (
 				<>
-					<div className="w-full flex justify-end border">
-						<button onClick={selecionarIntervalo} className="inline-block p-3 text-center bg-slate-500 text-white rounded-lg text-xs uppercase cursor-pointer hover:bg-slate-700 transition duration-200 select-none">
-							Selecionar intervalo para exclusão
+					<div className="absolute bottom-0 right-5">
+						<button onClick={selecionarIntervalo} className="inline-block p-3 text-center bg-slate-600 text-white rounded-s-lg text-xs uppercase cursor-pointer hover:bg-slate-800 transition duration-200 select-none">
+							Selecionar
+						</button>
+						<button onClick={handleSave} className="inline-block p-3 text-center bg-green-600 text-white rounded-e-lg text-xs uppercase cursor-pointer hover:bg-green-800 transition duration-200 select-none">
+							Salvar
 						</button>
 					</div>
 
@@ -152,10 +155,6 @@ export default function XlsxEditor() {
 							))}
 						</tbody>
 					</table>
-
-					<button onClick={handleSave} className="mt-4 bg-green-600 text-white px-4 py-2 rounded">
-						Salvar arquivo editado
-					</button>
 				</>
 			)}
 		</div>
